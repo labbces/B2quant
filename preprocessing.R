@@ -29,7 +29,12 @@ txi.salmon_BRAKER3<-tximport(files = myFiles_BRAKER3, type = 'salmon', tx2gene =
 head(txi.salmon_BRAKER3$counts)
 dataTPM_BRAKER3<-txi.salmon_BRAKER3$abundance
 dataTPM_BRAKER3_melt<-melt(dataTPM_BRAKER3)
-colnames(dataTPM_BRAKER3_melt)<-c('Gene','DevStage','TPM')
+colnames(dataTPM_BRAKER3_melt)<-c('Gene','Sample','TPM')
+dataTPM_BRAKER3_melt$DevStage<-NA
+dataTPM_BRAKER3_melt[which(dataTPM_BRAKER3_melt$Sample %in% c('SC_163P','SC_138P','SC_235P','SC_234P')),'DevStage']<-'P'
+dataTPM_BRAKER3_melt[which(dataTPM_BRAKER3_melt$Sample %in% c('SC_234M','SC_163M','SC_138M','SC_235M')),'DevStage']<-'M'
+dataTPM_BRAKER3_melt[which(dataTPM_BRAKER3_melt$Sample %in% c('SC_234B0','SC_235B0','SC_138B0')),'DevStage']<-'B0'
+dataTPM_BRAKER3_melt[which(dataTPM_BRAKER3_melt$Sample %in% c('SC_234B','SC_163B','SC_138B')),'DevStage']<-'B'
 
 # dataMeanTPM_BRAKER3<-cbind(rowMeans(dataTPM_BRAKER3[,which(targets$DevStage =='B')]),
 #           rowMeans(dataTPM_BRAKER3[,which(targets$DevStage =='B0')]),
@@ -47,6 +52,11 @@ head(txi.salmon_BRAKER3_dups$counts)
 dataTPM_BRAKER3_dups<-txi.salmon_BRAKER3_dups$abundance
 dataTPM_BRAKER3_dups_melt<-melt(dataTPM_BRAKER3_dups)
 colnames(dataTPM_BRAKER3_dups_melt)<-c('Gene','DevStage','TPM')
+dataTPM_BRAKER3_dups_melt$DevStage<-NA
+dataTPM_BRAKER3_dups_melt[which(dataTPM_BRAKER3_dups_melt$Sample %in% c('SC_163P','SC_138P','SC_235P','SC_234P')),'DevStage']<-'P'
+dataTPM_BRAKER3_dups_melt[which(dataTPM_BRAKER3_dups_melt$Sample %in% c('SC_234M','SC_163M','SC_138M','SC_235M')),'DevStage']<-'M'
+dataTPM_BRAKER3_dups_melt[which(dataTPM_BRAKER3_dups_melt$Sample %in% c('SC_234B0','SC_235B0','SC_138B0')),'DevStage']<-'B0'
+dataTPM_BRAKER3_dups_melt[which(dataTPM_BRAKER3_dups_melt$Sample %in% c('SC_234B','SC_163B','SC_138B')),'DevStage']<-'B'
 saveRDS(dataTPM_BRAKER3_dups_melt, 'dataTPM_BRAKER3_dups.rds')
 
 
@@ -60,6 +70,11 @@ head(txi.salmon_GALBA$counts)
 dataTPM_GALBA<-txi.salmon_GALBA$abundance
 dataTPM_GALBA_melt<-melt(dataTPM_GALBA)
 colnames(dataTPM_GALBA_melt)<-c('Gene','DevStage','TPM')
+dataTPM_GALBA_melt$DevStage<-NA
+dataTPM_GALBA_melt[which(dataTPM_GALBA_melt$Sample %in% c('SC_163P','SC_138P','SC_235P','SC_234P')),'DevStage']<-'P'
+dataTPM_GALBA_melt[which(dataTPM_GALBA_melt$Sample %in% c('SC_234M','SC_163M','SC_138M','SC_235M')),'DevStage']<-'M'
+dataTPM_GALBA_melt[which(dataTPM_GALBA_melt$Sample %in% c('SC_234B0','SC_235B0','SC_138B0')),'DevStage']<-'B0'
+dataTPM_GALBA_melt[which(dataTPM_GALBA_melt$Sample %in% c('SC_234B','SC_163B','SC_138B')),'DevStage']<-'B'
 saveRDS(dataTPM_GALBA_melt, 'dataTPM_GALBA.rds')
 
 myFiles_GALBA_dups<-paste(wd, 'data/', targets$SampleName,"_salmon_dups_GALBA/quant.sf",sep="")
@@ -70,4 +85,9 @@ head(txi.salmon_GALBA_dups$counts)
 dataTPM_GALBA_dups<-txi.salmon_GALBA_dups$abundance
 dataTPM_GALBA_dups_melt<-melt(dataTPM_GALBA_dups)
 colnames(dataTPM_GALBA_dups_melt)<-c('Gene','DevStage','TPM')
+dataTPM_GALBA_dups_melt$DevStage<-NA
+dataTPM_GALBA_dups_melt[which(dataTPM_GALBA_dups_melt$Sample %in% c('SC_163P','SC_138P','SC_235P','SC_234P')),'DevStage']<-'P'
+dataTPM_GALBA_dups_melt[which(dataTPM_GALBA_dups_melt$Sample %in% c('SC_234M','SC_163M','SC_138M','SC_235M')),'DevStage']<-'M'
+dataTPM_GALBA_dups_melt[which(dataTPM_GALBA_dups_melt$Sample %in% c('SC_234B0','SC_235B0','SC_138B0')),'DevStage']<-'B0'
+dataTPM_GALBA_dups_melt[which(dataTPM_GALBA_dups_melt$Sample %in% c('SC_234B','SC_163B','SC_138B')),'DevStage']<-'B'
 saveRDS(dataTPM_GALBA_dups_melt, 'dataTPM_GALBA_dups.rds')
