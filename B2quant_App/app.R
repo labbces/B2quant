@@ -47,7 +47,7 @@ ui <- fluidPage(
     )
   ),
   br(),
-  p("The last figure can display the expression profile of each of the genes/transcripts kepth after the filters."
+  p("Type the identifier of your gene of interest."
     ,style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
   
   # br(),
@@ -65,7 +65,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       textInput(inputId='selectedGene',
-                label='Select Gene of Interest',
+                label='Gene of Interest',
                 value = NULL,
                 width = NULL,
                 placeholder = "Type Gene ID")
